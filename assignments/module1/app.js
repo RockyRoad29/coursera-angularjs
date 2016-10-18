@@ -13,8 +13,10 @@ function LunchCheckController($scope) {
       console.log(items);
       if ($scope.menu == "") {
           $scope.message = "Please enter data first";
+          $scope.status_class = "message-error";
       } else {
           $scope.message = items.length <= 3 ? "Enjoy!" : "Too much!";
+          $scope.status_class = "message-ok";
       }
   };
 }

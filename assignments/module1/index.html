@@ -8,6 +8,8 @@
         <link rel="stylesheet" href="styles/bootstrap.min.css">
         <style>
          .message { font-size: 1.3em; font-weight: bold; }
+         .message-ok { color: green; }
+         .message-error { color: red }
         </style>
     </head>
     <body>
@@ -24,8 +26,7 @@
                         ng-click="too_much()"
                 >Check If Too Much</button>
             </div>
-            <div class="form-group message">
-                <!-- Your message can go here. -->
+            <div class="form-group message" ng-class="status_class">
                 {{message}}
             </div>
         </div>

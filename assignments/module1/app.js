@@ -13,12 +13,14 @@
       "<br/>Try: 'pizza, sauerkraut ,, icecream'";
     $scope.parser_message = default_parser_message;
     $scope.parser_status = "default";
+
     $scope.too_much = function () {
       var items = $scope.menu.split(',');
       console.log(items);
       if ($scope.menu == "") {
         $scope.message = "Please enter data first";
         $scope.status_class = "error";
+        $scope.parser_message = default_parser_message;
       } else {
         $scope.parser_status = "unchanged";
         var light_menu = items.filter(is_dish);

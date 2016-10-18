@@ -8,8 +8,15 @@
         <link rel="stylesheet" href="styles/bootstrap.min.css">
         <style>
          .message { font-size: 1.3em; font-weight: bold; }
-         .message-ok { color: green; }
-         .message-error { color: red }
+         div.ok { color: green; }
+         div.error { color: red; }
+         #lunch-menu.ok { border-color: green; }
+         #lunch-menu.error { border-color: red; }
+         #parser-message {
+             font-style: italic;
+             }
+         #parser-message.default { color: #121278; }
+         #parser-message.skimmed { color: #a1560d; }
         </style>
     </head>
     <body>
@@ -19,7 +26,13 @@
             <div class="form-group">
                 <input id="lunch-menu" type="text" ng-model="menu"
                        placeholder="list comma separated dishes you usually have for lunch"
-                       class="form-control">
+                       class="form-control"
+                ng-class="status_class">
+                <p id="parser-message" ng-class="parser_status">
+                    Parser message:
+                    {{parser_message}}
+                </p>
+                {{}}
             </div>
             <div class="form-group">
                 <button class="btn btn-default"

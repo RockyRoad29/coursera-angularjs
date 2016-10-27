@@ -13,15 +13,11 @@ html
     #to-buy
       h2 To Buy
       ul
-        li 1 bag of cookies
-        li 1 kg of wheat flour
-        li 2 packs of cooking chocolate
-        li 1 bag of sultanas
-        li 1 pound of pears
-        li 1 box of vanilla icecream
-        li 6 fresh eggs
-        li 200 ml of fresh cream
-        li 1 pack of backing powder
+        each o in to_buy
+          li
+            label
+              | Buy #{o.quantity} of #{o.name}
+              button Bought
     #bought
       h2 Already bought
       p Nothing bought yet

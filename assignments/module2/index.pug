@@ -1,0 +1,32 @@
+- var title = "Check-off Shopping List";
+- var stage = "in preliminary stage: layout";
+doctype html
+html
+  head
+    title Coursera assigment 2 - #{title}
+    block scripts
+      script(src='angular.min.js')
+      script(src='app.js')
+  body
+    block content
+    h1 This is #{title}
+    #to-buy
+      h2 To Buy
+      ul
+        li 1 bag of cookies
+        li 1 kg of wheat flour
+        li 2 packs of cooking chocolate
+        li 1 bag of sultanas
+        li 1 pound of pears
+        li 1 box of vanilla icecream
+        li 6 fresh eggs
+        li 200 ml of fresh cream
+        li 1 pack of backing powder
+    #bought
+      h2 Already bought
+      p Nothing bought yet
+      ul
+    hr
+    block foot
+      #footer
+        p This version is #{stage}.

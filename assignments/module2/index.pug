@@ -36,17 +36,17 @@ html(ng-app="ShoppingListCheckOff")
           h1
             small This is my #{""}
             = title
-        .row(ng-controller="ShoppingListController")
+        .row
           .col-md-6
-            #to-buy.panel.panel-primary
+            #to-buy.panel.panel-primary(ng-controller="ToBuyController as TBCtrl")
               .panel-heading: h2.panel-title.glyphicon.glyphicon-shopping-cart
                 |   To Buy
               .panel-body
-                p.message(ng-show="to_buy.length") Clicking on "Bought" will move your items to the list on the right.
+                p.message(ng-show="!TBCtrl.isEmpty()") Clicking on "Bought" will move your items to the list on the right.
                 form.form-inline
                   .list
-                    p.status(ng-hide="to_buy.length") Everything is bought!
-                    div(ng-if="to_buy.length" ng-repeat="o in to_buy")
+                    p.status(ng-show="TBCtrl.isEmpty()") Everything is bought!
+                    div(ng-if="!TBCtrl.isEmpty()" ng-repeat="o in TBCtrl.getItems()")
                       .list-item.row
                         label
                           .col-sm-9
@@ -55,19 +55,19 @@ html(ng-app="ShoppingListCheckOff")
                               |  of
                               span  {{o.name}}
                           .col-sm-3
-                            button.btn.btn-success("ng-click"="bought_item($index)")
+                            button.btn.btn-success("ng-click"="TBCtrl.setBought($index)")
                               | Bought #{""}
                               span.glyphicon.glyphicon-arrow-right
               .panel-footer
           .col-md-6
-            #bought.panel.panel-success
+            #bought.panel.panel-success(ng-controller="AlreadyBoughtController as ABCtrl")
               .panel-heading: h2.panel-title.glyphicon.glyphicon-ok
                 |  Already bought
               .panel-body
-                p.status("ng-if"="!bought.length") Nothing bought yet
-                ul("ng-if"="bought.length")
+                p.status("ng-if"="ABCtrl.isEmpty()") Nothing bought yet
+                ul("ng-if"="!ABCtrl.isEmpty()")
                   .list
-                    div(ng-repeat="o in bought")
+                    div(ng-repeat="o in ABCtrl.getItems()")
                       .list-item
                         span.mylabel Bought
                           span  {{o.quantity}}

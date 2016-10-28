@@ -1,6 +1,46 @@
-var app=angular.module('ShoppingListCheckOff',[]);
-app.controller('ShoppingListController', function($scope) {
-    $scope.to_buy = [
+(function(){
+    angular.module('ShoppingListCheckOff',[])
+    .controller('ToBuyController', ToBuyController)
+    .controller('AlreadyBoughtController', AlreadyBoughtController)
+    .service('ShoppingListCheckOffService', ShoppingListCheckOffService)
+;
+
+ToBuyController.$inject = ['ShoppingListCheckOffService'];
+function ToBuyController (ShoppingListCheckOffService) {
+    var ctrl = this;
+
+    ctrl.getItems = function() {
+        return ShoppingListCheckOffService.getItemsToBuy();
+    };
+
+    ctrl.isEmpty = function() {
+        var mt = (ctrl.getItems().length <= 0);
+        return mt;
+    };
+
+    ctrl.setBought = function(index) {
+        return ShoppingListCheckOffService.setBought(index);
+    };
+}
+
+AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
+function AlreadyBoughtController (ShoppingListCheckOffService) {
+    var ctrl = this;
+
+    ctrl.getItems = function() {
+        return ShoppingListCheckOffService.getItemsAlreadyBought();
+    };
+
+    ctrl.isEmpty = function() {
+        var mt = (ctrl.getItems().length <= 0);
+        return mt;
+    };
+}
+
+function ShoppingListCheckOffService() {
+    var service = this;
+
+    var to_buy = [
         {"quantity": "1 bag",   "name": "cookies"},
         {"quantity": "1 kg",    "name": "wheat flour"},
         {"quantity": "2 packs", "name": "cooking chocolate"},
@@ -11,14 +51,22 @@ app.controller('ShoppingListController', function($scope) {
         {"quantity": "200 ml",  "name": "fresh cream"},
         {"quantity": "1 pack",  "name": "backing powder"}
     ];
-    $scope.bought = [
+    var bought = [
         // {"quantity": "2 packs",  "name": "backing powder"}
     ];
-    $scope.bought_item = function(index) {
+    service.setBought = function(index) {
         console.log("Bought item #", index);
-        var items = $scope.to_buy.splice(index,1);
-        console.log("items removed: ", items);
-        $scope.bought.push(items[0]);
-        console.log("bought: ", $scope.bought);
-    }
-});
+        var items = to_buy.splice(index,1);
+        console.log("item remove: %s", JSON.stringify(items[0]));
+        bought.push(items[0]);
+    };
+    service.getItemsToBuy = function () {
+        // console.log("%d items to buy", to_buy.length);
+        return to_buy;
+    };
+    service.getItemsAlreadyBought = function () {
+        // console.log("%d items bought", bought.length);
+        return bought;
+    };
+}
+})();

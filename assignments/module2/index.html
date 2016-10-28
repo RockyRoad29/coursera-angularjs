@@ -32,23 +32,23 @@
         <h1><small>This is my </small>Check-off Shopping List
         </h1>
       </div>
-      <div class="row" ng-controller="ShoppingListController">
+      <div class="row">
         <div class="col-md-6">
-          <div class="panel panel-primary" id="to-buy">
+          <div class="panel panel-primary" id="to-buy" ng-controller="ToBuyController as TBCtrl">
             <div class="panel-heading">
               <h2 class="panel-title glyphicon glyphicon-shopping-cart">  To Buy</h2>
             </div>
             <div class="panel-body">
-              <p class="message" ng-show="to_buy.length">Clicking on "Bought" will move your items to the list on the right.</p>
+              <p class="message" ng-show="!TBCtrl.isEmpty()">Clicking on "Bought" will move your items to the list on the right.</p>
               <form class="form-inline">
                 <div class="list">
-                  <p class="status" ng-hide="to_buy.length">Everything is bought!</p>
-                  <div ng-if="to_buy.length" ng-repeat="o in to_buy">
+                  <p class="status" ng-show="TBCtrl.isEmpty()">Everything is bought!</p>
+                  <div ng-if="!TBCtrl.isEmpty()" ng-repeat="o in TBCtrl.getItems()">
                     <div class="list-item row">
                       <label>
                         <div class="col-sm-9"><span class="mylabel">Buy<span> {{o.quantity}}</span> of<span> {{o.name}}</span></span></div>
                         <div class="col-sm-3">
-                          <button class="btn btn-success" ng-click="bought_item($index)">Bought <span class="glyphicon glyphicon-arrow-right"></span></button>
+                          <button class="btn btn-success" ng-click="TBCtrl.setBought($index)">Bought <span class="glyphicon glyphicon-arrow-right"></span></button>
                         </div>
                       </label>
                     </div>
@@ -60,15 +60,15 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div class="panel panel-success" id="bought">
+          <div class="panel panel-success" id="bought" ng-controller="AlreadyBoughtController as ABCtrl">
             <div class="panel-heading">
               <h2 class="panel-title glyphicon glyphicon-ok"> Already bought</h2>
             </div>
             <div class="panel-body">
-              <p class="status" ng-if="!bought.length">Nothing bought yet</p>
-              <ul ng-if="bought.length">
+              <p class="status" ng-if="ABCtrl.isEmpty()">Nothing bought yet</p>
+              <ul ng-if="!ABCtrl.isEmpty()">
                 <div class="list">
-                  <div ng-repeat="o in bought">
+                  <div ng-repeat="o in ABCtrl.getItems()">
                     <div class="list-item"><span class="mylabel">Bought<span> {{o.quantity}}</span> of<span> {{o.name}}</span></span></div>
                   </div>
                 </div>

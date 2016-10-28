@@ -14,4 +14,11 @@ app.controller('ShoppingListController', function($scope) {
     $scope.bought = [
         // {"quantity": "2 packs",  "name": "backing powder"}
     ];
+    $scope.bought_item = function(index) {
+        console.log("Bought item #", index);
+        var items = $scope.to_buy.splice(index,1);
+        console.log("items removed: ", items);
+        $scope.bought.push(items[0]);
+        console.log("bought: ", $scope.bought);
+    }
 });

@@ -15,6 +15,13 @@
       form {
         margin-top: 50px;
       }
+      .status {
+        color: #FF4444;
+        font-size: larger;
+      }
+      .message {
+        color: #0044AA;
+      }
     </style>
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
@@ -31,15 +38,17 @@
             <div class="panel-heading">
               <h2 class="panel-title glyphicon glyphicon-shopping-cart">  To Buy</h2>
             </div>
-            <div class="panel-body">Clicking on "Bought" will move your items to the list on the right.
+            <div class="panel-body">
+              <p class="message" ng-show="to_buy.length">Clicking on "Bought" will move your items to the list on the right.</p>
               <form class="form-inline">
                 <div class="list">
-                  <div ng-repeat="o in to_buy">
+                  <p class="status" ng-hide="to_buy.length">Everything is bought!</p>
+                  <div ng-if="to_buy.length" ng-repeat="o in to_buy">
                     <div class="list-item row">
                       <label>
                         <div class="col-sm-9"><span class="mylabel">Buy<span> {{o.quantity}}</span> of<span> {{o.name}}</span></span></div>
                         <div class="col-sm-3">
-                          <button class="btn btn-success">Bought <span class="glyphicon glyphicon-arrow-right"></span></button>
+                          <button class="btn btn-success" ng-click="bought_item($index)">Bought <span class="glyphicon glyphicon-arrow-right"></span></button>
                         </div>
                       </label>
                     </div>
@@ -56,7 +65,7 @@
               <h2 class="panel-title glyphicon glyphicon-ok"> Already bought</h2>
             </div>
             <div class="panel-body">
-              <p ng-if="!bought.length">Nothing bought yet</p>
+              <p class="status" ng-if="!bought.length">Nothing bought yet</p>
               <ul ng-if="bought.length">
                 <div class="list">
                   <div ng-repeat="o in bought">
@@ -75,7 +84,7 @@
              Yaakov Chaikin at Coursera
             ,</a><a href="https://angularjs.org/"> AngularJS,</a> and<a href="http://getbootstrap.com/">
              Bootstrap3,</a><a href="http://glyphicons.com/">
-             glyphicons,</a><a href="https://pugjs.org/"> pugjs</a> and<a href="https://www.gnu.org/software/emacs/"> emacs<code>:-()</code></a></p>
+             glyphicons,</a><a href="https://pugjs.org/"> pugjs</a> and<a href="https://www.gnu.org/software/emacs/"> emacs<code>:-)</code></a></p>
       </div>
     </div>
   </body>

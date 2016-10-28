@@ -3,26 +3,56 @@
 doctype html
 html
   head
+    meta(name="viewport", content="width=device-width, initial-scale=1")
     title Coursera assigment 2 - #{title}
+    block styles
+      link(rel="stylesheet", href="styles/bootstrap.min.css")
+      style
+        | .row label {
+        //- | background-color: silver;
+        |   width: 100% !important;
+        |}
+        | .mylabel {
+        |   font-weight: normal;
+        |   font-style: italic;
+        |}
+        | form {
+        |   margin-top: 50px;
+        |}
     block scripts
-      script(src='angular.min.js')
-      script(src='app.js')
+      //- script(src='angular.min.js')
+      //- script(src='app.js')
   body
-    block content
-    h1 This is #{title}
-    #to-buy
-      h2 To Buy
-      ul
-        each o in to_buy
-          li
-            label
-              | Buy #{o.quantity} of #{o.name}
-              button Bought
-    #bought
-      h2 Already bought
-      p Nothing bought yet
-      ul
-    hr
-    block foot
-      #footer
-        p This version is #{stage}.
+    .container
+      block content
+        .page-header
+          h1
+            small This is my #{""}
+            = title
+        .row
+          .col-md-6
+            #to-buy.panel.panel-primary
+              .panel-heading: h2.panel-title To Buy
+              .panel-body
+                | Clicking on "Bought" will move your items to the list on the right.
+                form.form-inline
+                  .list
+                    each o in to_buy
+                      .list-item.row
+                        label
+                          .col-sm-10
+                            span.mylabel Buy #[span= o.quantity] of #[span= o.name]
+                          .col-sm-2
+                            button.btn.btn-success Bought
+              .panel-footer
+          .col-md-6
+            #bought.panel.panel-success
+              .panel-heading
+                h2.panel-title Already bought
+              .panel-body
+                p Nothing bought yet
+                ul
+        hr
+      block foot
+        #footer
+          p This version is #{stage}.

@@ -32,7 +32,8 @@ html
         .row
           .col-md-6
             #to-buy.panel.panel-primary
-              .panel-heading: h2.panel-title To Buy
+              .panel-heading: h2.panel-title.glyphicon.glyphicon-shopping-cart
+                |   To Buy
               .panel-body
                 | Clicking on "Bought" will move your items to the list on the right.
                 form.form-inline
@@ -40,15 +41,17 @@ html
                     each o in to_buy
                       .list-item.row
                         label
-                          .col-sm-10
+                          .col-sm-9
                             span.mylabel Buy #[span= o.quantity] of #[span= o.name]
-                          .col-sm-2
-                            button.btn.btn-success Bought
+                          .col-sm-3
+                            button.btn.btn-success
+                              | Bought #{""}
+                              span.glyphicon.glyphicon-arrow-right
               .panel-footer
           .col-md-6
             #bought.panel.panel-success
-              .panel-heading
-                h2.panel-title Already bought
+              .panel-heading: h2.panel-title.glyphicon.glyphicon-ok
+                |  Already bought
               .panel-body
                 p Nothing bought yet
                 ul

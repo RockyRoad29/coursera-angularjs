@@ -59,6 +59,14 @@ html(ng-app="ShoppingListCheckOff")
                               | Bought #{""}
                               span.glyphicon.glyphicon-arrow-right
               .panel-footer
+                form.form.form-inline
+                  p Add to shopping list:
+                  //- label Qty
+                  input.form-control(placeholder="Quantity", size="10"
+                  ng-model="TBCtrl.new_qty")
+                  //- label Name
+                  input.form-control(placeholder="Name", ng-model="TBCtrl.new_name")
+                  button.btn.btn-primary(ng-click="TBCtrl.addToList()") Add
           .col-md-6
             #bought.panel.panel-success(ng-controller="AlreadyBoughtController as ABCtrl")
               .panel-heading: h2.panel-title.glyphicon.glyphicon-ok

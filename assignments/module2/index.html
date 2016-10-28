@@ -56,7 +56,14 @@
                 </div>
               </form>
             </div>
-            <div class="panel-footer"></div>
+            <div class="panel-footer">
+              <form class="form form-inline">
+                <p>Add to shopping list:</p>
+                <input class="form-control" placeholder="Quantity" size="10" ng-model="TBCtrl.new_qty">
+                <input class="form-control" placeholder="Name" ng-model="TBCtrl.new_name">
+                <button class="btn btn-primary" ng-click="TBCtrl.addToList()">Add</button>
+              </form>
+            </div>
           </div>
         </div>
         <div class="col-md-6">

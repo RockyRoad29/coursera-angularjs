@@ -29,12 +29,12 @@ html(ng-app="COSL")
           h1
             small This is my #{""}
             = title
-        .row
+        .row(ng-controller="ShoppingListController")
           .col-md-6
             #to-buy.panel.panel-primary
               .panel-heading: h2.panel-title.glyphicon.glyphicon-shopping-cart
                 |   To Buy
-              .panel-body(ng-controller="ShoppingListController")
+              .panel-body
                 | Clicking on "Bought" will move your items to the list on the right.
                 form.form-inline
                   .list
@@ -56,9 +56,16 @@ html(ng-app="COSL")
               .panel-heading: h2.panel-title.glyphicon.glyphicon-ok
                 |  Already bought
               .panel-body
-                p Nothing bought yet
-                ul
-        hr
+                p("ng-if"="!bought.length") Nothing bought yet
+                ul("ng-if"="bought.length")
+                  .list
+                    div(ng-repeat="o in bought")
+                      .list-item
+                        span.mylabel Bought
+                          span  {{o.quantity}}
+                          |  of
+                          span  {{o.name}}
+      hr
       block foot
         #footer
           p This version is #{stage}.
@@ -75,4 +82,4 @@ html(ng-app="COSL")
             a(href="https://pugjs.org/")  pugjs
             |  and
             a(href="https://www.gnu.org/software/emacs/")  emacs
-              code :-)
+              code :-()

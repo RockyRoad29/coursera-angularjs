@@ -25,13 +25,13 @@
         <h1><small>This is my </small>Check-off Shopping List
         </h1>
       </div>
-      <div class="row">
+      <div class="row" ng-controller="ShoppingListController">
         <div class="col-md-6">
           <div class="panel panel-primary" id="to-buy">
             <div class="panel-heading">
               <h2 class="panel-title glyphicon glyphicon-shopping-cart">  To Buy</h2>
             </div>
-            <div class="panel-body" ng-controller="ShoppingListController">Clicking on "Bought" will move your items to the list on the right.
+            <div class="panel-body">Clicking on "Bought" will move your items to the list on the right.
               <form class="form-inline">
                 <div class="list">
                   <div ng-repeat="o in to_buy">
@@ -56,8 +56,14 @@
               <h2 class="panel-title glyphicon glyphicon-ok"> Already bought</h2>
             </div>
             <div class="panel-body">
-              <p>Nothing bought yet</p>
-              <ul></ul>
+              <p ng-if="!bought.length">Nothing bought yet</p>
+              <ul ng-if="bought.length">
+                <div class="list">
+                  <div ng-repeat="o in bought">
+                    <div class="list-item"><span class="mylabel">Bought<span> {{o.quantity}}</span> of<span> {{o.name}}</span></span></div>
+                  </div>
+                </div>
+              </ul>
             </div>
           </div>
         </div>
@@ -69,7 +75,7 @@
              Yaakov Chaikin at Coursera
             ,</a><a href="https://angularjs.org/"> AngularJS,</a> and<a href="http://getbootstrap.com/">
              Bootstrap3,</a><a href="http://glyphicons.com/">
-             glyphicons,</a><a href="https://pugjs.org/"> pugjs</a> and<a href="https://www.gnu.org/software/emacs/"> emacs<code>:-)</code></a></p>
+             glyphicons,</a><a href="https://pugjs.org/"> pugjs</a> and<a href="https://www.gnu.org/software/emacs/"> emacs<code>:-()</code></a></p>
       </div>
     </div>
   </body>

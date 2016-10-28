@@ -11,4 +11,7 @@ app.controller('ShoppingListController', function($scope) {
         {"quantity": "200 ml",  "name": "fresh cream"},
         {"quantity": "1 pack",  "name": "backing powder"}
     ];
+    $scope.bought = [
+        // {"quantity": "2 packs",  "name": "backing powder"}
+    ];
 });

@@ -1,7 +1,7 @@
 - var title = "Check-off Shopping List";
 - var stage = "in preliminary stage: layout";
 doctype html
-html
+html(ng-app="COSL")
   head
     meta(name="viewport", content="width=device-width, initial-scale=1")
     title Coursera assigment 2 - #{title}
@@ -20,8 +20,8 @@ html
         |   margin-top: 50px;
         |}
     block scripts
-      //- script(src='angular.min.js')
-      //- script(src='app.js')
+      script(src='angular.min.js')
+      script(src='app.js')
   body
     .container
       block content
@@ -34,15 +34,18 @@ html
             #to-buy.panel.panel-primary
               .panel-heading: h2.panel-title.glyphicon.glyphicon-shopping-cart
                 |   To Buy
-              .panel-body
+              .panel-body(ng-controller="ShoppingListController")
                 | Clicking on "Bought" will move your items to the list on the right.
                 form.form-inline
                   .list
-                    each o in to_buy
+                    div(ng-repeat="o in to_buy")
                       .list-item.row
                         label
                           .col-sm-9
-                            span.mylabel Buy #[span= o.quantity] of #[span= o.name]
+                            span.mylabel Buy
+                              span  {{o.quantity}}
+                              |  of
+                              span  {{o.name}}
                           .col-sm-3
                             button.btn.btn-success
                               | Bought #{""}
@@ -63,8 +66,8 @@ html
             a(href="https://www.coursera.org/learn/single-page-web-apps-with-angularjs/home/welcome")
               |  Yaakov Chaikin at Coursera
               | ,
-            //- a(href="https://angularjs.org/")  AngularJS,
-            //- |  and
+            a(href="https://angularjs.org/")  AngularJS,
+            |  and
             a(href="http://getbootstrap.com/")  Bootstrap3
               | ,
             a(href="http://glyphicons.com/")  glyphicons

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="COSL">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Coursera assigment 2 - Check-off Shopping List</title>
@@ -16,6 +16,8 @@
         margin-top: 50px;
       }
     </style>
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
   </head>
   <body>
     <div class="container">
@@ -29,80 +31,18 @@
             <div class="panel-heading">
               <h2 class="panel-title glyphicon glyphicon-shopping-cart">  To Buy</h2>
             </div>
-            <div class="panel-body">Clicking on "Bought" will move your items to the list on the right.
+            <div class="panel-body" ng-controller="ShoppingListController">Clicking on "Bought" will move your items to the list on the right.
               <form class="form-inline">
                 <div class="list">
-                  <div class="list-item row">
-                    <label>
-                      <div class="col-sm-9"><span class="mylabel">Buy <span>1 bag</span> of <span>cookies</span></span></div>
-                      <div class="col-sm-3">
-                        <button class="btn btn-success">Bought <span class="glyphicon glyphicon-arrow-right"></span></button>
-                      </div>
-                    </label>
-                  </div>
-                  <div class="list-item row">
-                    <label>
-                      <div class="col-sm-9"><span class="mylabel">Buy <span>1 kg</span> of <span>wheat flour</span></span></div>
-                      <div class="col-sm-3">
-                        <button class="btn btn-success">Bought <span class="glyphicon glyphicon-arrow-right"></span></button>
-                      </div>
-                    </label>
-                  </div>
-                  <div class="list-item row">
-                    <label>
-                      <div class="col-sm-9"><span class="mylabel">Buy <span>2 packs</span> of <span>cooking chocolate</span></span></div>
-                      <div class="col-sm-3">
-                        <button class="btn btn-success">Bought <span class="glyphicon glyphicon-arrow-right"></span></button>
-                      </div>
-                    </label>
-                  </div>
-                  <div class="list-item row">
-                    <label>
-                      <div class="col-sm-9"><span class="mylabel">Buy <span>1 bag</span> of <span>sultanas</span></span></div>
-                      <div class="col-sm-3">
-                        <button class="btn btn-success">Bought <span class="glyphicon glyphicon-arrow-right"></span></button>
-                      </div>
-                    </label>
-                  </div>
-                  <div class="list-item row">
-                    <label>
-                      <div class="col-sm-9"><span class="mylabel">Buy <span>1 pound</span> of <span>pears</span></span></div>
-                      <div class="col-sm-3">
-                        <button class="btn btn-success">Bought <span class="glyphicon glyphicon-arrow-right"></span></button>
-                      </div>
-                    </label>
-                  </div>
-                  <div class="list-item row">
-                    <label>
-                      <div class="col-sm-9"><span class="mylabel">Buy <span>1 box</span> of <span>vanilla icecream</span></span></div>
-                      <div class="col-sm-3">
-                        <button class="btn btn-success">Bought <span class="glyphicon glyphicon-arrow-right"></span></button>
-                      </div>
-                    </label>
-                  </div>
-                  <div class="list-item row">
-                    <label>
-                      <div class="col-sm-9"><span class="mylabel">Buy <span>6 pc</span> of <span>fresh eggs</span></span></div>
-                      <div class="col-sm-3">
-                        <button class="btn btn-success">Bought <span class="glyphicon glyphicon-arrow-right"></span></button>
-                      </div>
-                    </label>
-                  </div>
-                  <div class="list-item row">
-                    <label>
-                      <div class="col-sm-9"><span class="mylabel">Buy <span>200 ml</span> of <span>fresh cream</span></span></div>
-                      <div class="col-sm-3">
-                        <button class="btn btn-success">Bought <span class="glyphicon glyphicon-arrow-right"></span></button>
-                      </div>
-                    </label>
-                  </div>
-                  <div class="list-item row">
-                    <label>
-                      <div class="col-sm-9"><span class="mylabel">Buy <span>1 pack</span> of <span>backing powder</span></span></div>
-                      <div class="col-sm-3">
-                        <button class="btn btn-success">Bought <span class="glyphicon glyphicon-arrow-right"></span></button>
-                      </div>
-                    </label>
+                  <div ng-repeat="o in to_buy">
+                    <div class="list-item row">
+                      <label>
+                        <div class="col-sm-9"><span class="mylabel">Buy<span> {{o.quantity}}</span> of<span> {{o.name}}</span></span></div>
+                        <div class="col-sm-3">
+                          <button class="btn btn-success">Bought <span class="glyphicon glyphicon-arrow-right"></span></button>
+                        </div>
+                      </label>
+                    </div>
                   </div>
                 </div>
               </form>
@@ -127,7 +67,7 @@
         <p>This version is in preliminary stage: layout.</p>
         <p class="credits">Built with the help of<a href="https://www.coursera.org/learn/single-page-web-apps-with-angularjs/home/welcome">
              Yaakov Chaikin at Coursera
-            ,</a><a href="http://getbootstrap.com/">
+            ,</a><a href="https://angularjs.org/"> AngularJS,</a> and<a href="http://getbootstrap.com/">
              Bootstrap3,</a><a href="http://glyphicons.com/">
              glyphicons,</a><a href="https://pugjs.org/"> pugjs</a> and<a href="https://www.gnu.org/software/emacs/"> emacs<code>:-)</code></a></p>
       </div>

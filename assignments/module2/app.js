@@ -1,4 +1,4 @@
-var app=angular.module('COSL',[]);
+var app=angular.module('ShoppingListCheckOff',[]);
 app.controller('ShoppingListController', function($scope) {
     $scope.to_buy = [
         {"quantity": "1 bag",   "name": "cookies"},
